@@ -15,7 +15,6 @@ const newsSlice = createSlice({
 });
 
 export const selectAllNews = (state) => state.news;
-
 export const { newsAdd } = newsSlice.actions;
 
 export default newsSlice.reducer;

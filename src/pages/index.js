@@ -8,6 +8,7 @@ import { fetchHeadlines } from "@/utils/Requests";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { newsAdd } from "@/redux/actions/newsSlice";
+import NewsSection from "@/components/NewsSection";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function Home(props) {
         <Header />
         <Categorybar />
         <BigPost item={props.results.articles} />
+        <NewsSection/>
       </main>
     </>
   );

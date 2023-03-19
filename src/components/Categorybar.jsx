@@ -41,7 +41,7 @@ const Categorybar = () => {
         {category.map((item, i) => (
           <span
             key={item.id}
-            onClick={() => router.push(`/genre=${item.name}`)}
+            onClick={() => router.push(`/category=${item.name}`)}
           >
             {item.name}
           </span>

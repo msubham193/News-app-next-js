@@ -1,35 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import { useSelector } from "react-redux";
+import { selectAllNews } from "@/redux/actions/newsSlice";
 
-const BigPost = () => {
+const BigPost = ({ item }) => {
+  let x = Math.floor(Math.random() * 19);
+
+  const {news} = useSelector(selectAllNews);
+  console.log(news);
+
+  
   return (
     <div className="flex items-center justify-center mx-20 font-poppins">
       <div className="relative flex items-center justify-center w-[90%]">
         <img
-          src={
-            "https://media.cnn.com/api/v1/images/stellar/prod/230318154634-01-ecuador-earthquake-031823.jpg?c=16x9&q=w_800,c_fill"
-          }
+          src={news[x].urlToImage}
           alt="image"
           className="w-full h-[500px] object-cover rounded-md "
         />
 
         <div className="absolute bottom-[-50px] bg-white w-[70%] p-6 rounded-lg shadow-lg">
-          <h1 className="text-gray-500 mb-4">
-            Kaitlan Collins, Kristen Holmes, Paula Reid
-          </h1>
-          <h1 className="font-bold text-4xl mb-4">
-            Trump says he expects to be arrested Tuesday as New York law
-            enforcement prepares for possible indictment - CNN
-          </h1>
-          <p className="text-gray-500">
-            Former President Donald Trump said Saturday he expects to be
-            arrested in connection with the investigation by the Manhattan
-            District Attorney next week
-          </p>
+          <h1 className="text-gray-500 mb-4">{news[x].author}</h1>
+          <h1 className="font-bold text-4xl mb-4">{news[x].title}</h1>
+          <p className="text-gray-500">{news[x].description}</p>
         </div>
       </div>
     </div>
   );
 };
 
-export default BigPost;
+export default dynamic(() => Promise.resolve(BigPost), { ssr: false });
